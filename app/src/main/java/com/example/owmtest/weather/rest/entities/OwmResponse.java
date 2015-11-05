@@ -15,7 +15,7 @@ public class OwmResponse extends BaseObservable {
     private Coord coord;
 
     @Expose
-    private List<Weather> weather = new ArrayList<>();
+    private List<Weather> weather;
 
     /**
      * Internal parameter
@@ -66,10 +66,6 @@ public class OwmResponse extends BaseObservable {
     private Long dt;
 
     public OwmResponse() {
-    }
-
-    {
-        weather.add(new Weather());
     }
 
     @Bindable

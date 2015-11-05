@@ -3,6 +3,7 @@ package com.example.owmtest;
 import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -19,11 +20,10 @@ import butterknife.ButterKnife;
 public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
+    private static final String TAG = "main";
+
     @Bind(R.id.loading_view)
     LinearLayout loadingView;
-
-    @Bind(R.id.container)
-    FrameLayout container;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -63,12 +63,12 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        Log.e(TAG, "Result: " + i);
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
+        Log.e(TAG, "Connection failed");
     }
 
     protected void showWeatherFragment(Location location) {
