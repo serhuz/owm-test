@@ -2,8 +2,6 @@
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
 .DS_Store
 /build
 /captures
@@ -64,9 +62,6 @@ $RECYCLE.BIN/
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
-### Gradle template
-.gradle
-build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
