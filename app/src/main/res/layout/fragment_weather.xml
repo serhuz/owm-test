@@ -8,7 +8,7 @@
         <variable name="list" type="java.util.List&lt;com.example.owmtest.weather.rest.entities.Weather>"/>
         <variable
             name="response"
-            type="com.example.owmtest.weather.rest.entities.OwmResponse" />
+            type="com.example.owmtest.weather.retrofit.entities.OwmResponse" />
     </data>
 
     <RelativeLayout

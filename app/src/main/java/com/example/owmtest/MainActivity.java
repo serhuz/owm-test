@@ -77,7 +77,5 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 .beginTransaction()
                 .replace(R.id.container, WeatherFragment.create(location), "weather")
                 .commit();
-
-
     }
 }

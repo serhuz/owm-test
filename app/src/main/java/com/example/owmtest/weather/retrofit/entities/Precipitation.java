@@ -1,4 +1,4 @@
-package com.example.owmtest.weather.rest.entities;
+package com.example.owmtest.weather.retrofit.entities;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

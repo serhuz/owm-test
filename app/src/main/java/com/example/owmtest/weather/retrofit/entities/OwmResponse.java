@@ -1,4 +1,4 @@
-package com.example.owmtest.weather.rest.entities;
+package com.example.owmtest.weather.retrofit.entities;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -6,7 +6,6 @@ import android.databinding.Bindable;
 import com.example.owmtest.BR;
 import com.google.gson.annotations.Expose;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OwmResponse extends BaseObservable {

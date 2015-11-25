@@ -16,9 +16,9 @@ import android.widget.ImageView;
 
 import com.example.owmtest.R;
 import com.example.owmtest.databinding.FragmentWeatherBinding;
-import com.example.owmtest.weather.rest.OwmApi;
-import com.example.owmtest.weather.rest.entities.OwmResponse;
-import com.example.owmtest.weather.rest.entities.Weather;
+import com.example.owmtest.weather.retrofit.OwmApi;
+import com.example.owmtest.weather.retrofit.entities.OwmResponse;
+import com.example.owmtest.weather.retrofit.entities.Weather;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
