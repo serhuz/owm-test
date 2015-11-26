@@ -5,7 +5,4 @@
     android:orientation="vertical"
     tools:context="com.example.owmtest.DataFragment">
 
-
-
-
 </LinearLayout>
