@@ -3,7 +3,6 @@ package com.example.owmtest.weather;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.databinding.DataBindingUtil;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
@@ -15,10 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.owmtest.R;
-import com.example.owmtest.databinding.FragmentWeatherBinding;
-import com.example.owmtest.weather.retrofit.OwmApi;
-import com.example.owmtest.weather.retrofit.entities.OwmResponse;
-import com.example.owmtest.weather.retrofit.entities.Weather;
+import com.example.owmtest.retrofit.OwmApi;
+import com.example.owmtest.retrofit.entities.OwmResponse;
+import com.example.owmtest.retrofit.entities.Weather;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,7 +29,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
@@ -49,11 +46,9 @@ public class WeatherFragment extends Fragment implements GoogleMap.OnMapLoadedCa
     private static final String KEY_LAT = "lat";
     private static final String KEY_LNG = "lng";
 
-    @Bind(R.id.pic)
     ImageView pic;
 
     private OwmApi api;
-    private FragmentWeatherBinding mBinding;
     private double lat;
     private double lng;
     private LatLngBounds mBounds;
@@ -84,9 +79,8 @@ public class WeatherFragment extends Fragment implements GoogleMap.OnMapLoadedCa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_weather, container, false);
 
-        View root = mBinding.getRoot();
+        View root = inflater.inflate(R.layout.fragment_weather, container, false);
         ButterKnife.bind(this, root);
         return root;
     }
@@ -114,14 +108,11 @@ public class WeatherFragment extends Fragment implements GoogleMap.OnMapLoadedCa
                         new Action1<OwmResponse>() {
                             @Override
                             public void call(OwmResponse owmResponse) {
-                                addPosition();
+
 
                                 List<Weather> weather = owmResponse.getWeather();
-                                if (weather != null && weather.size() == 1) {
-                                    loadPic(weather.get(0).getIcon());
-                                }
 
-                                mBinding.setResponse(owmResponse);
+
                             }
                         }, new Action1<Throwable>() {
                             @Override

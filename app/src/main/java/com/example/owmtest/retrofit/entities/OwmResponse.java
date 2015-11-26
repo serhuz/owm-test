@@ -1,14 +1,10 @@
-package com.example.owmtest.weather.retrofit.entities;
+package com.example.owmtest.retrofit.entities;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
-
-import com.example.owmtest.BR;
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
-public class OwmResponse extends BaseObservable {
+public class OwmResponse {
 
     @Expose
     private Coord coord;
@@ -67,133 +63,107 @@ public class OwmResponse extends BaseObservable {
     public OwmResponse() {
     }
 
-    @Bindable
     public Coord getCoord() {
         return coord;
     }
 
     public void setCoord(Coord coord) {
         this.coord = coord;
-        notifyPropertyChanged(BR.coord);
     }
 
-    @Bindable
     public List<Weather> getWeather() {
         return weather;
     }
 
     public void setWeather(List<Weather> weather) {
         this.weather = weather;
-        notifyPropertyChanged(BR.weather);
     }
 
-    @Bindable
     public String getBase() {
         return base;
     }
 
     public void setBase(String base) {
         this.base = base;
-        notifyPropertyChanged(BR.base);
     }
 
-    @Bindable
     public Main getMain() {
         return main;
     }
 
     public void setMain(Main main) {
         this.main = main;
-        notifyPropertyChanged(BR.main);
     }
 
-    @Bindable
     public Wind getWind() {
         return wind;
     }
 
     public void setWind(Wind wind) {
         this.wind = wind;
-        notifyPropertyChanged(BR.wind);
     }
 
-    @Bindable
     public Clouds getClouds() {
         return clouds;
     }
 
     public void setClouds(Clouds clouds) {
         this.clouds = clouds;
-        notifyPropertyChanged(BR.clouds);
     }
 
-    @Bindable
     public Precipitation getRain() {
         return rain;
     }
 
     public void setRain(Precipitation rain) {
         this.rain = rain;
-        notifyPropertyChanged(BR.rain);
     }
 
-    @Bindable
     public Precipitation getSnow() {
         return snow;
     }
 
     public void setSnow(Precipitation snow) {
         this.snow = snow;
-        notifyPropertyChanged(BR.snow);
     }
 
-    @Bindable
     public Sys getSys() {
         return sys;
     }
 
     public void setSys(Sys sys) {
         this.sys = sys;
-        notifyPropertyChanged(BR.sys);
     }
 
-    @Bindable
     public Integer getCod() {
         return cod;
     }
 
     public void setCod(Integer cod) {
         this.cod = cod;
-        notifyPropertyChanged(BR.cod);
     }
 
-    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-        notifyPropertyChanged(BR.name);
     }
 
-    @Bindable
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-        notifyPropertyChanged(BR.id);
     }
 
-    @Bindable
     public Long getDt() {
         return dt;
     }
 
     public void setDt(Long dt) {
         this.dt = dt;
-        notifyPropertyChanged(BR.dt);
     }
 }

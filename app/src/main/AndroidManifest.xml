@@ -25,7 +25,6 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAuywNe77lgLh-iJJmR61OkjB5fyIen538" />
-
         <meta-data
             android:name="com.example.owmtest.owm.key"
             android:value="3263c514ac3b66d8dbba2cca67766b87" />

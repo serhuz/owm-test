@@ -1,6 +1,6 @@
-package com.example.owmtest.weather.retrofit;
+package com.example.owmtest.retrofit;
 
-import com.example.owmtest.weather.retrofit.entities.OwmResponse;
+import com.example.owmtest.retrofit.entities.OwmResponse;
 
 import retrofit.http.GET;
 import retrofit.http.Query;

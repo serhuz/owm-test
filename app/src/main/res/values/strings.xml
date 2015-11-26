@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">OWM Test</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_weather">WeatherActivity</string>
+    <string name="search_title">Search</string>
+    <string name="text_instruction">Enter a city name and press \'search\' to get weather</string>
 </resources>
