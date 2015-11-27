@@ -5,4 +5,11 @@
 
     </style>
 
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">0dp</item>
+        <item name="cardBackgroundColor">#ffffff</item>
+    </style>
+
 </resources>

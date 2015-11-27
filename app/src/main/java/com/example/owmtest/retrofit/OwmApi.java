@@ -17,5 +17,6 @@ public interface OwmApi {
     @GET("/data/2.5/weather")
     Observable<OwmResponse> searchWeatherForCity(@Query("q") String city,
                                                  @Query("units") String units,
-                                                 @Query("appId") String appId);
+                                                 @Query("appId") String appId,
+                                                 @Query("lang") String lang);
 }

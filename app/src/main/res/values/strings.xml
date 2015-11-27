@@ -1,9 +1,28 @@
 <resources>
     <string name="app_name">OWM Test</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_weather">WeatherActivity</string>
     <string name="search_title">Search</string>
-    <string name="text_instruction">Enter a city name and press \'search\' to get weather</string>
+    <string name="text_instruction">Enter a city name and press \'search\' to begin</string>
+    <string name="location">Location:</string>
+    <string name="error_load_data">Could not load data</string>
+    <string name="description">Description:</string>
+    <string name="conditions">Conditions</string>
+    <string name="description_pic">Weather pic</string>
+    <string name="temp_c">°C</string>
+    <string name="pressure_bar">bar</string>
+    <string name="temp">Temperature:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="sunrise">Sunrise:</string>
+    <string name="sunset">Sunset:</string>
+    <string name="wind_data">Wind data</string>
+    <string name="wind_speed">Wind speed:</string>
+    <string name="wind_speed_kph">kph</string>
+    <string name="wind_direction">Wind direction:</string>
+    <string name="weather">Weather</string>
+    <string name="astronomical_data">Astronomical data</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="unit_mm">mm</string>
+    <string name="snow">Snow:</string>
+    <string name="rain">Rain:</string>
+    <string name="cloudiness">Cloudiness</string>
 </resources>
