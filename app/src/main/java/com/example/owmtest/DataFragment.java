@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Locale;
 
@@ -56,6 +57,8 @@ public class DataFragment extends Fragment implements GoogleMap.OnMapLoadedCallb
     private static final String KEY_QUERY = "query";
     private static final String KEY_API_KEY = "key";
     public static final String HH_MM = "HH:mm";
+
+    private static View sView;
 
     private OwmApi mApi;
     private String mQuery;
@@ -148,14 +151,27 @@ public class DataFragment extends Fragment implements GoogleMap.OnMapLoadedCallb
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_data, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        // Handle the view creation to avoid exceptions due to child fragment conflicts.
+        // In case when new DataFragment is created and is about to replace the existing one,
+        // we need to remove the latter to avoid exception.
+        if (sView != null) {
+            ViewGroup parent = (ViewGroup) sView.getParent();
+            if (parent != null)
+                parent.removeView(sView);
+        }
+        try {
+            sView = inflater.inflate(R.layout.fragment_data, container, false);
+        } catch (InflateException e) {
+            Log.e(TAG, "Inflate exception", e);
+            // Just return view as is
+        }
+        ButterKnife.bind(this, sView);
+        return sView;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mApi.searchWeatherForCity(mQuery, "metric", mApiKey, Locale.getDefault().getLanguage())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -176,33 +192,17 @@ public class DataFragment extends Fragment implements GoogleMap.OnMapLoadedCallb
                             }
                         }
                 );
-
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStart() {
+        super.onStart();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            try {
-                Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-                childFragmentManager.setAccessible(true);
-                childFragmentManager.set(this, null);
-            } catch (NoSuchFieldException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        getFragmentManager()
-                .beginTransaction()
-                .remove(getMapFragment())
-                .commit();
         ButterKnife.unbind(this);
     }
 
@@ -233,7 +233,8 @@ public class DataFragment extends Fragment implements GoogleMap.OnMapLoadedCallb
 
     private void displayAstronomicalData(Sys sys) {
         Locale locale = Locale.getDefault();
-        DateTime sunriseTime = new DateTime(sys.getSunrise() * 1000);
+        DateTimeZone tz = DateTimeZone.getDefault();
+        DateTime sunriseTime = new DateTime(sys.getSunrise() * 1000, tz);
         sunrise.setText(String.format(
                 locale,
                 "%s %s",
@@ -241,7 +242,7 @@ public class DataFragment extends Fragment implements GoogleMap.OnMapLoadedCallb
                 sunriseTime.toString(HH_MM)
         ));
 
-        DateTime sunsetTime = new DateTime(sys.getSunset() * 1000);
+        DateTime sunsetTime = new DateTime(sys.getSunset() * 1000, tz);
         sunset.setText(String.format(
                 locale,
                 "%s %s",

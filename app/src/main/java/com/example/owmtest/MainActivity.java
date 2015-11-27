@@ -1,6 +1,7 @@
 package com.example.owmtest;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -85,5 +86,17 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
         Bundle metaData = info.metaData;
 
         return metaData.getString("com.example.owmtest.owm.key");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Fragment fragment = getFragmentManager().findFragmentByTag("weather");
+        if (fragment != null) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .remove(fragment)
+                    .commit();
+        }
     }
 }

@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
 
+        <!-- Key is not tied to specific keystore -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAuywNe77lgLh-iJJmR61OkjB5fyIen538" />
