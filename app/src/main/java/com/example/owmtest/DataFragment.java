@@ -46,6 +46,7 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit.RestAdapter;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -117,6 +118,7 @@ public class DataFragment extends Fragment implements GoogleMap.OnMapLoadedCallb
 
     @Bind(R.id.precipitation)
     TextView precipitation;
+    private Subscription mSubscription;
 
     public static DataFragment create(@NonNull String query, @NonNull String key) {
         Bundle args = new Bundle();
@@ -172,7 +174,7 @@ public class DataFragment extends Fragment implements GoogleMap.OnMapLoadedCallb
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mApi.searchWeatherForCity(mQuery, "metric", mApiKey, Locale.getDefault().getLanguage())
+        mSubscription = mApi.searchWeatherForCity(mQuery, "metric", mApiKey, Locale.getDefault().getLanguage())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -197,7 +199,14 @@ public class DataFragment extends Fragment implements GoogleMap.OnMapLoadedCallb
     @Override
     public void onStart() {
         super.onStart();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mSubscription != null) {
+            mSubscription.unsubscribe();
+        }
     }
 
     @Override
